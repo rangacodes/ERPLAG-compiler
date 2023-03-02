@@ -1,0 +1,111 @@
+0: <program> ---> <moduleDeclarations><otherModules><driverModule><otherModules>
+1: <moduleDeclarations> ---> <moduleDeclaration><moduleDeclarations>
+2: <moduleDeclarations> ---> e 
+3: <moduleDeclaration> ---> DECLARE MODULE ID SEMICOL 
+4: <otherModules> ---> <module><otherModules>
+5: <otherModules> ---> e 
+6: <driverModule> ---> DRIVERDEF DRIVER PROGRAM DRIVERENDDEF <moduleDef>
+7: <module> ---> DEF MODULE ID ENDDEF TAKES INPUT SQBO <input_plist>SQBC SEMICOL <ret><moduleDef>
+8: <ret> ---> RETURNS SQBO <output_plist>SQBC SEMICOL 
+9: <ret> ---> e 
+10: <input_plist> ---> ID COLON <dataType><input_plist1>
+11: <input_plist1> ---> COMMA ID COLON <dataType><input_plist1>
+12: <input_plist1> ---> e 
+13: <output_plist> ---> ID COLON <type><output_plist1>
+14: <output_plist1> ---> COMMA ID COLON <type><output_plist1>
+15: <output_plist1> ---> e 
+16: <dataType> ---> INTEGER 
+17: <dataType> ---> REAL 
+18: <dataType> ---> BOOLEAN 
+19: <dataType> ---> ARRAY SQBO <range_arrays>SQBC OF <type>
+20: <range_arrays> ---> <index>RANGEOP <index>
+21: <type> ---> INTEGER 
+22: <type> ---> REAL 
+23: <type> ---> BOOLEAN 
+24: <moduleDef> ---> START <statements>END 
+25: <statements> ---> <statement><statements>
+26: <statements> ---> e 
+27: <statement> ---> <ioStmt>
+28: <statement> ---> <simpleStmt>
+29: <statement> ---> <declareStmt>
+30: <statement> ---> <conditionalStmt>
+31: <statement> ---> <iterativeStmt>
+32: <ioStmt> ---> GET_VALUE BO ID BC SEMICOL 
+33: <ioStmt> ---> PRINT BO <var>BC SEMICOL 
+34: <var> ---> <var_id_num>
+35: <var> ---> <boolConstt>
+36: <var_id_num> ---> ID <whichId>
+37: <var_id_num> ---> NUM 
+38: <var_id_num> ---> RNUM 
+39: <boolConstt> ---> TRUE 
+40: <boolConstt> ---> FALSE 
+41: <whichId> ---> SQBO <index>SQBC 
+42: <whichId> ---> e 
+43: <simpleStmt> ---> <assignmentStmt>
+44: <simpleStmt> ---> <moduleReuseStmt>
+45: <assignmentStmt> ---> ID <whichStmt>
+46: <whichStmt> ---> <lvalueIDStmt>
+47: <whichStmt> ---> <lvalueARRStmt>
+48: <lvalueIDStmt> ---> ASSIGNOP <expression>SEMICOL 
+49: <lvalueARRStmt> ---> SQBO <index>SQBC ASSIGNOP <expression>SEMICOL 
+50: <index> ---> NUM 
+51: <index> ---> ID 
+52: <moduleReuseStmt> ---> <optional>USE MODULE ID WITH PARAMETERS <idList>SEMICOL 
+53: <optional> ---> SQBO <idList>SQBC ASSIGNOP 
+54: <optional> ---> e 
+55: <idList> ---> ID <idList1>
+56: <idList1> ---> COMMA ID <idList1>
+57: <idList1> ---> e 
+58: <expression> ---> <arithmeticOrBooleanExpr>
+59: <expression> ---> <U>
+60: <U> ---> <unary_op><new_NT>
+61: <new_NT> ---> BO <arithmeticExpr>BC 
+62: <new_NT> ---> <var_id_num>
+63: <unary_op> ---> PLUS 
+64: <unary_op> ---> MINUS 
+65: <arithmeticOrBooleanExpr> ---> <AnyTerm><arithmeticOrBooleanExpr1>
+66: <arithmeticOrBooleanExpr> ---> BO <arithmeticOrBooleanExpr>BC <arithmeticOrBooleanExpr1>
+67: <arithmeticOrBooleanExpr1> ---> <logicalOp><AnyTerm><arithmeticOrBooleanExpr1>
+68: <arithmeticOrBooleanExpr1> ---> e 
+69: <AnyTerm> ---> <arithmeticExpr><AnyTerm1>
+70: <AnyTerm> ---> <boolConstt>
+71: <AnyTerm1> ---> <relationalOp><arithmeticExpr>
+72: <AnyTerm1> ---> e 
+73: <arithmeticExpr> ---> <term><arithmeticExpr1>
+74: <arithmeticExpr1> ---> <op1><term><arithmeticExpr1>
+75: <arithmeticExpr1> ---> e 
+76: <term> ---> <factor><term1>
+77: <term1> ---> <op2><factor><term1>
+78: <term1> ---> e 
+79: <factor> ---> <var_id_num>
+80: <factor> ---> BO <arithmeticOrBooleanExpr>BC 
+81: <op1> ---> PLUS 
+82: <op1> ---> MINUS 
+83: <op2> ---> MUL 
+84: <op2> ---> DIV 
+85: <logicalOp> ---> AND 
+86: <logicalOp> ---> OR 
+87: <relationalOp> ---> LT 
+88: <relationalOp> ---> LE 
+89: <relationalOp> ---> GT 
+90: <relationalOp> ---> GE 
+91: <relationalOp> ---> EQ 
+92: <relationalOp> ---> NE 
+93: <declareStmt> ---> DECLARE <idList>COLON <dataType>SEMICOL 
+94: <conditionalStmt> ---> SWITCH BO ID BC START <caseStmts><default>END 
+95: <caseStmts> ---> CASE <value>COLON <statements>BREAK SEMICOL <caseStmts1>
+96: <caseStmts1> ---> CASE <value>COLON <statements>BREAK SEMICOL <caseStmts1>
+97: <caseStmts1> ---> e 
+98: <value> ---> NUM 
+99: <value> ---> TRUE 
+100: <value> ---> FALSE 
+101: <default> ---> DEFAULT COLON <statements>BREAK SEMICOL 
+102: <default> ---> e 
+103: <iterativeStmt> ---> FOR BO ID IN <range>BC START <statements>END 
+104: <iterativeStmt> ---> WHILE BO <arithmeticOrBooleanExpr>BC START <statements>END 
+105: <range> ---> NUM RANGEOP NUM 
+
+Populating follow sets...
+Done!
+Populating parse table...
+Done!
