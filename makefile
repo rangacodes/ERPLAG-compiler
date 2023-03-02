@@ -1,11 +1,11 @@
 make: compiler
 	./compiler testcase.txt code.asm
-compiler: ast.o driver1.o ff.o codegen.o intermediate_code_generator.o lexer.o symbol_table.o typeChecker.o
-	gcc ast.o driver1.o ff.o codegen.o intermediate_code_generator.o lexer.o symbol_table.o typeChecker.o -o compiler
+compiler: ast.o driver.o ff.o codegen.o intermediate_code_generator.o lexer.o symbol_table.o typeChecker.o
+	gcc ast.o driver.o ff.o codegen.o intermediate_code_generator.o lexer.o symbol_table.o typeChecker.o -o compiler
 ast.o : ast.c
 	gcc -c ast.c -o ast.o
-driver1.o: driver1.c
-	gcc -c driver1.c -o driver1.o
+driver.o: driver.c
+	gcc -c driver.c -o driver.o
 ff.o: ff.c
 	gcc -c ff.c -o ff.o
 codegen.o: codegen.c
